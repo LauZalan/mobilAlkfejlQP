@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity"
+    android:layout_gravity="center">
+
+    <TextView
+        android:id="@+id/textViewQuickPrintLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/teal"
+        android:text="@string/quickprint"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"/>
+
+    <TextView
+        android:id="@+id/textViewBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:layout_marginStart="20dp"
+        android:onClick="backToLogin"/>
+
+    <TextView
+        android:id="@+id/textViewRegister"
+        android:layout_below="@id/textViewQuickPrintLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Register"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:layout_marginTop="40dp"/>
+
+    <EditText
+        android:id="@+id/editTextUserName"
+        android:autofillHints=""
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:ems="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewRegister"
+        android:layout_marginTop="30dp"
+        android:hint="@string/Username"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:autofillHints=""
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextUserName"
+        android:layout_marginTop="30dp"
+        android:hint="@string/e_mail"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextEmail"
+        android:layout_marginTop="30dp"
+        android:hint="@string/Password"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/editTextPasswordAgain"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPassword"
+        android:layout_marginTop="30dp"
+        android:hint="@string/password_again"
+        android:minHeight="48dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/teal"
+        android:text="@string/Register"
+        android:layout_below="@id/editTextPasswordAgain"
+        android:layout_centerHorizontal="true"
+        android:onClick="register"/>
+
+</RelativeLayout>

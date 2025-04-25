@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "789295005115",
+    "project_id": "mobilalkfejlqp",
+    "storage_bucket": "mobilalkfejlqp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789295005115:android:abcbea32d32f94695e189e",
+        "android_client_info": {
+          "package_name": "com.example.quickprint"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789295005115-9qpko600o4g5men7roo5qialpnq3g4t0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.quickprint",
+            "certificate_hash": "bfd165887161458ed6ed40c0603f46ac3e520e01"
+          }
+        },
+        {
+          "client_id": "789295005115-iq0hjpibtdobrip8hp4lm3ib8p0rc40j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO1VFeGEsTmjOo3FSr9sYuwmtoVHO968o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789295005115-iq0hjpibtdobrip8hp4lm3ib8p0rc40j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -19,8 +20,8 @@
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/textViewRegister"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewRegister"
@@ -70,9 +71,6 @@
         android:id="@+id/buttonLoginGoogle"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:layout_columnWeight="1"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/teal"
         android:gravity="center"
@@ -87,9 +85,6 @@
         android:id="@+id/buttonGuest"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:layout_columnWeight="1"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/teal"
         android:gravity="center"
@@ -104,9 +99,6 @@
         android:id="@+id/buttonLogin"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:layout_columnWeight="1"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/teal"
         android:gravity="center"
@@ -121,9 +113,6 @@
         android:id="@+id/buttonRegister"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_row="0"
-        android:layout_column="1"
-        android:layout_columnWeight="1"
         android:backgroundTint="@color/teal"
         android:gravity="center"
         android:onClick="register"

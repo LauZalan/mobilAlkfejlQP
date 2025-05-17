@@ -1,61 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".HomeActivity"
+    tools:openDrawer="start"
+    android:layout_gravity="start">
 
-    <TextView
-        android:id="@+id/textViewQuickPrintLogin"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/teal"
-        android:text="@string/quickprint"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="40sp"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_marginHorizontal="10dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:text="@string/home"
-        android:textSize="35sp"
-        android:textAlignment="viewEnd"
-        android:onClick="home"/>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/teal"
+            android:elevation="4dp">
+            <TextView
+                android:id="@+id/textViewQuickPrintLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/teal"
+                android:text="@string/quickprint"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="40sp" />
+        </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/yay"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewQuickPrintLogin"
-        android:text="@string/successful_registration"
-        android:textAlignment="center"
-        android:textSize="50sp" />
 
-    <TextView
-        android:id="@+id/oops"
-        android:layout_margin="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/yay"
-        android:text="@string/under_construction"
-        android:textAlignment="center"/>
+        <!--
+        <TextView
+            android:id="@+id/textViewQuickPrintLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/teal"
+            android:text="@string/quickprint"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="40sp" />
 
-    <Button
-        android:id="@+id/logout"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="@string/home"
+            android:textSize="35sp"
+            android:textAlignment="viewEnd"
+            android:onClick="home"
+            android:elevation="6dp"/>
+
+        -->
+
+        <TextView
+            android:id="@+id/yay"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:text="@string/successful_registration"
+            android:textAlignment="center"
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/oops"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/yay"
+            android:text="@string/under_construction"
+            android:textAlignment="center"/>
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/oops"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/teal"
+            android:onClick="logout"
+            android:text="@string/logout"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/oops"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/teal"
-        android:onClick="logout"
-        android:text="@string/logout"
-        android:visibility="gone"/>
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/sidenav"/>
 
-</RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

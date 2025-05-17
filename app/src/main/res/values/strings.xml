@@ -4,7 +4,7 @@
     <string name="Username">Username</string>
     <string name="Login">Login</string>
     <string name="Register">Register</string>
-    <string name="quickprint">Quick Print</string>
+    <string name="quickprint">QuickPrint</string>
     <string name="password_again">Password Again</string>
     <string name="e_mail">E-mail</string>
     <string name="back"><![CDATA[<]]></string>
@@ -15,4 +15,6 @@
     <string name="login_guest">Login as guest</string>
     <string name="login_Google">Login with Google Account</string>
     <string name="logout">Logout</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
 </resources>

@@ -20,9 +20,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final String TAG = RegisterActivity.class.getName();
@@ -32,6 +37,9 @@ public class RegisterActivity extends AppCompatActivity {
     EditText emailET;
     EditText passwordET;
     EditText passwordAgainET;
+
+    private FirebaseFirestore mFirestore;
+    private CollectionReference users;
     private SharedPreferences preferences;
     private FirebaseAuth auth;
 
@@ -66,9 +74,13 @@ public class RegisterActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
+        mFirestore = FirebaseFirestore.getInstance();
+        users = mFirestore.collection("Users");
+
         //userNameET.setText(userName);
         //passwordET.setText(password);
         //passwordAgainET.setText(password);
+
     }
 
     public void backToLogin(View view) {
@@ -93,6 +105,19 @@ public class RegisterActivity extends AppCompatActivity {
             Log.i(TAG, "Oops! Something went wrong!");
             Toast.makeText(RegisterActivity.this, "Oops! Some fields on the registration form are not filled properly :/",Toast.LENGTH_LONG).show();
         } else {
+            User user = new User(userNameET.getText().toString(), emailET.getText().toString(), passwordET.getText().toString());
+            users.add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+                    Log.i(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                }
+            })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.i(TAG, "Error adding document", e);
+                        }
+                    });
             auth.createUserWithEmailAndPassword(emailET.getText().toString(), passwordET.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {

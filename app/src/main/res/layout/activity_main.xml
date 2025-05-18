@@ -68,20 +68,6 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
-        android:id="@+id/buttonLoginGoogle"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/teal"
-        android:gravity="center"
-        android:onClick="loginGoogle"
-        android:text="@string/login_Google"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonGuest" />
-
-    <Button
         android:id="@+id/buttonGuest"
         android:layout_width="150dp"
         android:layout_height="50dp"
@@ -121,7 +107,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLoginGoogle"
+        app:layout_constraintTop_toBottomOf="@+id/buttonGuest"
         app:layout_constraintVertical_bias="0.075" />
 
     <androidx.constraintlayout.widget.Guideline

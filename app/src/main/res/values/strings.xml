@@ -11,10 +11,22 @@
     <string name="successful_registration">Successful registration!</string>
     <string name="successful_login">Successful login!</string>
     <string name="under_construction">Further elements of the app are under construction please return to the home screen.</string>
-    <string name="home">⌂</string>
+    <string name="home">Home</string>
     <string name="login_guest">Login as guest</string>
     <string name="login_Google">Login with Google Account</string>
     <string name="logout">Logout</string>
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile">Profile</string>
+    <string name="print">Print</string>
+    <string name="welcome">Welcome Back!</string>
+    <string name="update">Update</string>
+    <string name="old_password">Old password</string>
+    <string name="new_password">New password</string>
+    <string name="forbidden">This feature is only available to registrated users!</string>
+    <string name="newPrint">Print new document</string>
+    <string name="sample">Sample Documents</string>
+    <string name="lorem_ipsum">Lorem ipsum</string>
 </resources>

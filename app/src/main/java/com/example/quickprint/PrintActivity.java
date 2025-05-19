@@ -96,6 +96,7 @@ public class PrintActivity extends AppCompatActivity {
         Random random = new Random();
         int id = random.nextInt(1000);
         notificationManager.notify(id, builder.build());
+        Toast.makeText(this, "Document printed!",Toast.LENGTH_LONG).show();
     }
 
     @Override

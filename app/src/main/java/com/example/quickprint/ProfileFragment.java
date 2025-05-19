@@ -153,6 +153,7 @@ public class ProfileFragment extends Fragment {
                                 Random random = new Random();
                                 int id = random.nextInt(1000);
                                 notificationManager.notify(id, builder.build());
+                                Toast.makeText(requireContext(), "Your user credentials have been changed.",Toast.LENGTH_LONG).show();
                             });
                 } else {
                     Toast.makeText(requireContext(), "Ooops something went worng!",Toast.LENGTH_LONG).show();

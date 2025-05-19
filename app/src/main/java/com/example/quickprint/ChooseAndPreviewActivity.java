@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.RawRes;
@@ -91,6 +92,7 @@ public class ChooseAndPreviewActivity extends AppCompatActivity {
         int id = random.nextInt(1000);
         notificationManager.notify(id, builder.build());
         back(view);
+        Toast.makeText(this, "Document printed!",Toast.LENGTH_LONG).show();
     }
 
     @Override

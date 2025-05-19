@@ -78,6 +78,10 @@ public class HomeFragment extends Fragment {
         ImageView wave = view.findViewById(R.id.wave);
         Animation wiggleAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.wiggle);
         wave.startAnimation(wiggleAnimation);
+
+        ImageView bug = view.findViewById(R.id.coolBug);
+        Animation spin = AnimationUtils.loadAnimation(requireContext(), R.anim.spin);
+        bug.startAnimation(spin);
     }
 
 }

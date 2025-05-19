@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/printFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PrintFragment"
-    android:scrollbars="vertical">
+    android:scrollbars="vertical"
+    tools:context=".PrintFragment">
 
     <RelativeLayout
+        android:id="@+id/relLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -26,10 +27,19 @@
             android:id="@+id/print"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/textViewQuickPrintLogin"
             android:text="@string/print"
             android:textAlignment="center"
-            android:textSize="50sp"
-            android:layout_below="@id/textViewQuickPrintLogin"/>
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/Forbidden"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewQuickPrintLogin"
+            android:text="@string/forbidden"
+            android:textAlignment="center"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/printNew"
@@ -39,25 +49,25 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:backgroundTint="@color/teal"
-            android:text="@string/newPrint"/>
+            android:text="@string/newPrint" />
 
         <TextView
             android:id="@+id/sample"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/printNew"
+            android:layout_marginTop="20dp"
             android:text="@string/sample"
             android:textAlignment="center"
-            android:layout_marginTop="20dp"
-            android:textSize="20sp"
-            android:layout_below="@id/printNew"/>
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/itemImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/sample"
             android:adjustViewBounds="true"
-            android:src="@drawable/samlple_doc"
-            android:layout_below="@+id/sample"/>
+            android:src="@drawable/samlple_doc" />
 
         <TextView
             android:id="@+id/itemTitle"
@@ -66,60 +76,34 @@
             android:layout_below="@id/itemImage"
             android:padding="8dp"
             android:text="@string/lorem_ipsum"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
 
-        <Button
-            android:id="@+id/printButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Print"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/itemTitle"
-            android:backgroundTint="@color/teal"/>
 
         <Button
             android:id="@+id/preview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Preview"
+            android:layout_below="@id/itemTitle"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/printButton"
-            android:backgroundTint="@color/teal"/>
-
-        <ImageView
-            android:id="@+id/itemImage2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:src="@drawable/samlple_doc"
-            android:layout_below="@+id/preview"/>
+            android:backgroundTint="@color/teal"
+            android:text="Preview" />
 
         <TextView
-            android:id="@+id/itemTitle2"
+            android:id="@+id/previous"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/itemImage2"
-            android:padding="8dp"
-            android:text="@string/lorem_ipsum"
-            android:textAlignment="center"/>
+            android:layout_below="@+id/preview"
+            android:layout_marginTop="20dp"
+            android:text="Previous documents"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/printButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Print"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/itemTitle2"
-            android:backgroundTint="@color/teal"/>
-
-        <Button
-            android:id="@+id/preview2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Preview"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/printButton2"
-            android:backgroundTint="@color/teal"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/previous"
+            android:padding="8dp" />
 
     </RelativeLayout>
 </ScrollView>

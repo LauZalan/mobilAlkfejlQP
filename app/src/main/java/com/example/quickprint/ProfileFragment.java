@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,6 +29,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,10 +47,7 @@ public class ProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
     private FirebaseUser user;
-    private FirebaseAuth auth;
-
     private EditText UserName;
     private TextView Email;
     private EditText Pass;
@@ -142,18 +140,19 @@ public class ProfileFragment extends Fragment {
                     users.document(id).update("userName", UserName.getText().toString());
                     user.updatePassword(Pass2.getText().toString())
                             .addOnSuccessListener(aVoid -> {
-                                NotificationCompat.Builder builder = new NotificationCompat.Builder(requireContext(), "my_channel_id")
-                                        .setSmallIcon(R.drawable.print) // Use your own icon
+                                NotificationCompat.Builder builder = new NotificationCompat.Builder(requireContext(), "id")
+                                        .setSmallIcon(R.mipmap.ic_launcher_round)
                                         .setContentTitle("Credentials changed!")
                                         .setContentText("Your user credentials have been changed.")
-                                        .setPriority(NotificationCompat.PRIORITY_HIGH)
-                                        .setDefaults(NotificationCompat.DEFAULT_ALL);
+                                        .setPriority(NotificationCompat.PRIORITY_HIGH);
 
                                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(requireContext());
                                 if (ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                                     return;
                                 }
-                                notificationManager.notify(1001, builder.build());
+                                Random random = new Random();
+                                int id = random.nextInt(1000);
+                                notificationManager.notify(id, builder.build());
                             });
                 } else {
                     Toast.makeText(requireContext(), "Ooops something went worng!",Toast.LENGTH_LONG).show();

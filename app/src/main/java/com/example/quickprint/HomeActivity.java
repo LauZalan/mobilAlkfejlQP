@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 import android.Manifest;
 
@@ -16,34 +14,28 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-public class HomeActivity extends AppCompatActivity {
-    private static final String TAG = HomeActivity.class.getName();
+import java.util.Random;
+
+public class HomeActivity extends AppCompatActivity implements DocumentAdapter.OnDocumentActionListener {
 
     private FirebaseUser user;
-    private FirebaseAuth auth;
 
     private FirebaseFirestore mFirestore;
-    private CollectionReference users;
-
-    private String email;
-    private String userName;
     private String tag;
 
 
@@ -82,6 +74,10 @@ public class HomeActivity extends AppCompatActivity {
             setCurrentFragment(homeFragment, "home");
         }
 
+        if (secret_key == 420) {
+            setCurrentFragment(printFragment, "print");
+        }
+
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.home) {
@@ -99,17 +95,17 @@ public class HomeActivity extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
-                    "my_channel_id", // Channel ID
-                    "My Channel",     // Channel Name
+                    "id", // Channel ID
+                    "Channel",     // Channel Name
                     NotificationManager.IMPORTANCE_HIGH
             );
-            channel.setDescription("This is my app's notification channel");
+            channel.setDescription("Description");
 
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
                     != PackageManager.PERMISSION_GRANTED) {
 
@@ -127,12 +123,6 @@ public class HomeActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public void home(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("SECRET_KEY", 99);
-        startActivity(intent);
-    }
-
     public void logout(View view) {
         if (user.getEmail() == null) {
             user.delete();
@@ -141,11 +131,71 @@ public class HomeActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        this.finish();
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("current_fragment", tag);
+    }
+
+    @Override
+    public void onPrintAgain() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "id")
+                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setContentTitle("Document printed!")
+                .setContentText("Your document has been printed.")
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        Random random = new Random();
+        int id = random.nextInt(1000);
+        notificationManager.notify(id, builder.build());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment currentFragment = fragmentManager.findFragmentById(R.id.printFragment);
+
+        if (currentFragment instanceof PrintFragment) {
+            PrintFragment docFragment = (PrintFragment) currentFragment;
+            DocumentAdapter adapter = docFragment.getAdapter();
+            if (adapter != null) {
+                adapter.notifyDataSetChanged();
+            }
+
+        }
+    }
+
+    @Override
+    public void onDelete(Document doc) {
+        mFirestore = FirebaseFirestore.getInstance();
+        CollectionReference docs = mFirestore.collection("Documents");
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment currentFragment = fragmentManager.findFragmentById(R.id.printFragment);
+
+        docs.document(doc.getId()).delete().addOnSuccessListener(aVoid -> {
+                    Toast.makeText(this, "Document deleted!", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Failed to delete: " + doc.getName(), Toast.LENGTH_SHORT).show();
+                });
+        if (currentFragment instanceof PrintFragment) {
+            PrintFragment docFragment = (PrintFragment) currentFragment;
+            DocumentAdapter adapter = docFragment.getAdapter();
+            if (adapter != null) {
+                adapter.removeItem(doc);
+                adapter.notifyDataSetChanged();
+            }
+
+        }
+        this.recreate();
     }
 }

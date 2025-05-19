@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/main"
-        tools:context=".PrintActivity">
+        tools:context=".ChooseAndPreviewActivity">
 
         <TextView
             android:id="@+id/textViewQuickPrintLogin"
@@ -21,7 +21,6 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="40sp" />
-
         <TextView
             android:id="@+id/textViewBack"
             android:layout_width="wrap_content"
@@ -33,25 +32,32 @@
             android:onClick="back"/>
 
         <TextView
-            android:id="@+id/select"
+            android:id="@+id/oops"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textViewQuickPrintLogin"
-            android:layout_marginTop="20dp"
-            android:text="Select pdf file to upload and print"
+            android:layout_gravity="center"
+            android:text="Preview"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:layout_below="@+id/textViewQuickPrintLogin"
+            android:layout_marginTop="20dp"
+            android:textSize="25sp"/>
+
+        <ImageView
+            android:id="@+id/pdf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/oops"/>
 
         <Button
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/select"
+            android:layout_below="@id/pdf"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:backgroundTint="@color/teal"
-            android:onClick="select"
-            android:text="Select"/>
+            android:onClick="print"
+            android:text="Print"/>
 
         <!--
 
